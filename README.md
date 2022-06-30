@@ -1,0 +1,1 @@
+This application can display information about the currently handled DLC's
