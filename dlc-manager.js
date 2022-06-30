@@ -9,6 +9,7 @@ window.onload = () => {
       const containerDiv = document.querySelector('.container');
       const dlcCount = document.createElement('span');
       const newHr = document.createElement('hr');
+      const newHr2 = document.createElement('hr');
       const dlcCountParagraph = document.createElement('p');
       dlcCount.className = 'dlc-count';
       dlcCount.innerText = allDLC.length;
@@ -17,16 +18,18 @@ window.onload = () => {
       containerDiv.appendChild(dlcCountParagraph);
       containerDiv.appendChild(dlcCount);
       containerDiv.appendChild(newHr);
-      for (let i = 0; i < allDLC.length; i++) {
+      containerDiv.appendChild(newHr2);
+      console.log(allDLC.length);
+      for (let i = allDLC.length - 1; i >= 0; i--) {
         const newUl = document.createElement('ul');
         const newLi = document.createElement('li');
         newLi.className = 'dlc-details';
-        newLi.innerText = `DLC ${i+1} - blockNumber: ${allDLC[i].blockNumber}, timeStamp: ${allDLC[i].timeStamp}, gasUsed: ${allDLC[i].gasUsed}, 
-        blockHash: ${allDLC[i].blockHash}`
+        newLi.innerText = `DLC ${i + 1} - blockNumber: ${allDLC[i].blockNumber}, timeStamp: ${allDLC[i].timeStamp}, gasUsed: ${allDLC[i].gasUsed}, nonce: ${allDLC[i].nonce}, 
+        blockHash: ${allDLC[i].blockHash}`;
         containerDiv.appendChild(newLi);
       };
 
-      console.log(allDLC[4]);
+      console.log(allDLC[106]);
     })
     .catch(err => console.log('rejected', err.message));
 };
@@ -47,12 +50,7 @@ const getAllDLC = async () => {
 // btn.addEventListener('click', () => {
 //   getJokes()
 //     .then(data => {
-//       const containerDiv = document.querySelector('.container');
-//       const newUl = document.createElement('ul');
-//       const newLi = document.createElement('li');
-//       newLi.innerText = data.value.joke;
-//       newUl.appendChild(newLi);
-//       containerDiv.appendChild(newUl);
+
 //     })
 //     .catch(err => console.log('rejected', err.message));
 // });
