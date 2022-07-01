@@ -1,6 +1,5 @@
 'use strict';
 
-
 window.onload = () => {
   getAllDLC()
     .then(data => {
