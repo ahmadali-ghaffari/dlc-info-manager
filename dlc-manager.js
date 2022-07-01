@@ -1,11 +1,15 @@
 'use strict';
 
-const btn = document.querySelector('button');
 
 window.onload = () => {
   getAllDLC()
     .then(data => {
       const allDLC = data.result;
+      let unix_timestamp = Number(allDLC[allDLC.length - 1].timeStamp);
+      let date = new Date(unix_timestamp * 1000);
+      let dateSpan = document.createElement('span');
+      dateSpan.className =
+        dateSpan.textContent = ` The age of the newest DLC: ` + date;
       const containerDiv = document.querySelector('.container');
       const dlcCount = document.createElement('span');
       const newHr = document.createElement('hr');
@@ -18,8 +22,8 @@ window.onload = () => {
       containerDiv.appendChild(dlcCountParagraph);
       containerDiv.appendChild(dlcCount);
       containerDiv.appendChild(newHr);
+      containerDiv.appendChild(dateSpan);
       containerDiv.appendChild(newHr2);
-      console.log(allDLC.length);
       for (let i = allDLC.length - 1; i >= 0; i--) {
         const newUl = document.createElement('ul');
         const newLi = document.createElement('li');
@@ -29,7 +33,6 @@ window.onload = () => {
         containerDiv.appendChild(newLi);
       };
 
-      console.log(allDLC[106]);
     })
     .catch(err => console.log('rejected', err.message));
 };
